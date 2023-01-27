@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import { Route, Switch } from 'react-router-dom'
 import FilterCategory from './pages/FilterCategory'
+import ShowRecipe from './pages/ShowRecipe'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/about" component={About} />
           <Route path="/contacts" component={Contact} />
           <Route path="/filter/:name" component={FilterCategory} />
+          <Route path="/recipe/:id" component={ShowRecipe} />
           <Route component={NotFound} />
         </Switch>
       </main>

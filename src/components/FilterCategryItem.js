@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../App.css'
-export default function FilterCategoryItem({ strMealThumb,  strMeal}) {
+export default function FilterCategoryItem({idMeal, strMealThumb,  strMeal}) {
   return (
     <div className="card ">
       <div className="card-image">
@@ -11,6 +11,9 @@ export default function FilterCategoryItem({ strMealThumb,  strMeal}) {
           <b>{strMeal}</b>
         </h1>
       </div>
+      <Link to={`/recipe/${idMeal}`} className="btn more">
+        Show Receipe
+      </Link>
     </div>
   )
 }
