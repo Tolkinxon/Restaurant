@@ -30,7 +30,7 @@ export default function ShowRecipe() {
 
   const colum = (string) => {
     const colum1 = Object.keys(meal).filter((item) =>
-      item.toLocaleLowerCase().includes(string),
+      item.toLowerCase().includes(string),
     )
     const coum2 = colum1.filter((item) => meal[item].length > 0)
     return coum2
