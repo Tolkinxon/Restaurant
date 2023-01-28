@@ -16,7 +16,7 @@ export default function FilterCategory() {
       setMeals(data.meals)
     })
   }, [])
-  console.log(meals)
+  // console.log(meals)
 
   return (
     <div className="list-wrapper">

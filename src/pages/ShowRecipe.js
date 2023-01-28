@@ -7,8 +7,9 @@ import '../App.css'
 export default function ShowRecipe() {
   const { id } = useParams()
   const { goBack } = useHistory()
-  console.log(id)
+  // console.log(id)
   const [meal, setMeal] = useState([])
+  const [toggle, setToggle] = useState(false)
 
   useEffect(() => {
     getMealById(id).then((data) => {
@@ -16,9 +17,24 @@ export default function ShowRecipe() {
     })
   }, [])
 
-  const { strMeal, strCategory, strArea, strInstructions, strMealThumb } = meal
+  console.log(meal)
 
-  //  console.log(Object.key(meal))
+  const {
+    strMeal,
+    strCategory,
+    strArea,
+    strInstructions,
+    strMealThumb,
+    strYoutube,
+  } = meal
+
+  const colum = (string) => {
+    const colum1 = Object.keys(meal).filter((item) =>
+      item.toLocaleLowerCase().includes(string),
+    )
+    const coum2 = colum1.filter((item) => meal[item].length > 0)
+    return coum2
+  }
 
   return (
     <div className="list-wrapper">
@@ -40,22 +56,42 @@ export default function ShowRecipe() {
             <b>Category of meal:</b> {strCategory}
           </h5>
           <p>{strInstructions}</p>
-          <table className="striped">
-            <thead>
-              <tr>
-                <th>Meal</th>
-                <th>Measure</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
+          <button className="btn" onClick={() => setToggle(!toggle)}>
+            hide
+          </button>{' '}
+          <br />
+          <br />
+          {toggle && (
+            <table className="striped">
+              <thead>
                 <tr>
-                  <td>hello</td>
-                  <td>world</td>
+                  <th>ingredient</th>
+                  <th>measure</th>
                 </tr>
-              }
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {colum('ingredient').map((item, idx) => (
+                  <>
+                    <tr>
+                      <td>{meal[item]}</td>
+                      <td>{meal[colum('measure')[idx]]}</td>
+                    </tr>
+                  </>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {meal.strYoutube ? (
+            <>
+              {' '}
+              <iframe
+                width="400"
+                height="200"
+                src={`https://www.youtube.com/embed/${strYoutube.slice(-11)}`}
+                allowfullscreen
+              />{' '}
+            </>
+          ) : null}
         </div>
       ) : (
         <Loader />
