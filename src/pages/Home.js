@@ -11,12 +11,7 @@ export default function Home() {
   const { push } = useHistory()
   const { pathname, search } = useLocation()
 
-  const his = useHistory()
-  const loc = useLocation()
-
-  console.log(his)
-  console.log(loc)
-
+ 
   const handleSearch = (str) => {
     setSearching(
       categories.filter((item) =>
